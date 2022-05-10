@@ -44,6 +44,7 @@ along with this software (see the LICENSE.md file). If not, see
             if (useTryInsert) edl.useTryInsert(true)
             if (hideNoActionFiles) edl.messageNoActionFiles(false)
             if (continueOnError) edl.continueOnError(true)
+            if (skipLines) edl.skipLines(skipLines as Integer)
 
             if (checkOnly) {
                 // do nothing, checkOnly handled in screen actions before render
@@ -121,6 +122,7 @@ along with this software (see the LICENSE.md file). If not, see
             <field name="useTryInsert"><default-field title=""><check><option key="true" text="Use Try Insert?"/></check></default-field></field>
             <field name="hideNoActionFiles"><default-field title=""><check><option key="true" text="Hide No Action Files?"/></check></default-field></field>
             <field name="continueOnError"><default-field title=""><check><option key="true" text="Continue on error"/></check></default-field></field>
+            <field name="skipLines"><default-field title="Skip Lines"><text-line size="5" default-value="0"/></default-field></field>
 
             <field name="types"><default-field tooltip="Comma Separated (from entity-facade-xml.@type)">
                 <text-line size="60"/></default-field></field>
@@ -146,7 +148,13 @@ along with this software (see the LICENSE.md file). If not, see
 
             <field-layout>
                 <field-ref name="timeout"/>
-                <field-row-big><field-ref name="dummyFks"/><field-ref name="useTryInsert"/><field-ref name="hideNoActionFiles"/><field-ref name="continueOnError"/></field-row-big>
+                 <field-ref name="skipLines"/>
+                <field-row-big>
+                    <field-ref name="dummyFks"/>
+                    <field-ref name="useTryInsert"/>
+                    <field-ref name="hideNoActionFiles"/>
+                    <field-ref name="continueOnError"/>
+                </field-row-big>
                 <field-accordion>
                     <field-group title="By Data Types"><field-ref name="types"/><field-ref name="components"/></field-group>
                     <field-group title="Resource Location"><field-ref name="location"/></field-group>
