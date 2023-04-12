@@ -27,6 +27,8 @@ along with this software (see the LICENSE.md file). If not, see
                 edl.location(location)
                 source = location
             } else if (csvText) {
+                edl.csvDelimiter(csvDelimiter as char)
+                edl.csvQuoteChar(csvQuoteChar as char)
                 edl.csvText(csvText)
                 source = "CSV Text Box"
             } else if (jsonText) {
@@ -135,6 +137,12 @@ along with this software (see the LICENSE.md file). If not, see
             <field name="csvText"><default-field title="Text">
                 <text-area rows="5" cols="120" default-value=""/>
             </default-field></field>
+            <field name="csvDelimiter"><default-field title="Delimiter">
+                <text-line size="5" default-value=","/>
+            </default-field></field>
+            <field name="csvQuoteChar"><default-field title="Quote Char">
+                <text-line size="5" default-value='"'/>
+            </default-field></field>
 
             <field name="checkOnly"><default-field title="Check Data"><submit/></default-field></field>
             <field name="onlyCreate"><default-field title="Import Data - Create Only">
@@ -150,7 +158,7 @@ along with this software (see the LICENSE.md file). If not, see
                     <field-group title="Resource Location"><field-ref name="location"/></field-group>
                     <field-group title="XML Text"><field-ref name="xmlText"/></field-group>
                     <field-group title="JSON Text"><field-ref name="jsonText"/></field-group>
-                    <field-group title="CSV Text"><field-ref name="csvText"/></field-group>
+                    <field-group title="CSV Text"><field-ref name="csvText"/><field-ref name="csvDelimiter"/><field-ref name="csvQuoteChar"/></field-group>
                 </field-accordion>
                 <field-col-row><field-col md="4">
                     <field-ref name="checkOnly"/>
@@ -178,7 +186,9 @@ along with this software (see the LICENSE.md file). If not, see
                     edl.location(location)
                     source = location
                 } else if (csvText) {
+                    edl.csvDelimiter(csvDelimiter as char)
                     edl.csvText(csvText)
+
                     source = "CSV Text Box"
                 } else if (jsonText) {
                     edl.jsonText(jsonText)
